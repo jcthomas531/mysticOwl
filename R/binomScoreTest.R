@@ -1,4 +1,15 @@
-#binomial score test
+#' binomScoreTest - binomial score test
+#' @param y  test
+#' @return A list containing values:
+#' \code{ML_estimate} test1,
+#' \code{test_stat} test2,
+#' \code{p_val},
+#' \code{ci}
+#' @details
+#'    some explaination
+#' @examples 
+#' #test
+#' @export
 binomScoreTest <- function (y, n, pi_hy = .5, alpha = .05) {
   #maximum likelihood estimate of pi
   pi_ml <- y/n
