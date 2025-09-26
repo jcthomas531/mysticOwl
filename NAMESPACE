@@ -3,4 +3,5 @@
 export(binomScoreTest)
 export(easyColors)
 export(gkGammaTest)
+export(pressResids)
 importFrom(vcdExtra,GKgamma)
