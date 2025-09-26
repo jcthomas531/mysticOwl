@@ -3,5 +3,7 @@
 export(binomScoreTest)
 export(easyColors)
 export(gkGammaTest)
+export(kablePdf)
 export(pressResids)
+import(kableExtra)
 importFrom(vcdExtra,GKgamma)
