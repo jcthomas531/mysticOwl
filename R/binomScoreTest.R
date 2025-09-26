@@ -1,10 +1,10 @@
 #' binomScoreTest - binomial score test
 #' @param y  test
 #' @return A list containing values:
-#' \code{ML_estimate} test1,
-#' \code{test_stat} test2,
-#' \code{p_val},
-#' \code{ci}
+#' \item{ML_estimate}{test1}
+#' \item{test_stat}{test2}
+#' \item{p_val}
+#' \item{ci}
 #' @details
 #'    some explaination
 #' @examples 

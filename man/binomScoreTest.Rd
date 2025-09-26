@@ -11,10 +11,10 @@ binomScoreTest(y, n, pi_hy = 0.5, alpha = 0.05)
 }
 \value{
 A list containing values:
-\code{ML_estimate} test1,
-\code{test_stat} test2,
-\code{p_val},
-\code{ci}
+\item{ML_estimate}{test1}
+\item{test_stat}{test2}
+\item{p_val}
+\item{ci}
 }
 \description{
 binomScoreTest - binomial score test
