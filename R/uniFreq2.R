@@ -13,7 +13,7 @@
 #' @import dplyr
 #' @export
 uniFreq2 <- function(data, variable, includeNA = TRUE) {
-  if (include_NA == TRUE) {
+  if (includeNA == TRUE) {
     #select column of interest and create basic summary
     sumDat <- data |>
       select(all_of(variable)) |>
