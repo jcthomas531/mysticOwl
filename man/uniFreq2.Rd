@@ -11,7 +11,7 @@ uniFreq2(data, variable, includeNA = TRUE)
 
 \item{variable}{the name of the variable stored as a character}
 
-\item{includeNA}{whether or not to inlcude missing values in the frequency table, default is \code{TRUE}}
+\item{includeNA}{whether or not to include missing values in the frequency table, default is \code{TRUE}}
 }
 \value{
 a univariate frequency table

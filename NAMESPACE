@@ -2,6 +2,7 @@
 
 export(binomScoreTest)
 export(easyColors)
+export(freqFormat)
 export(gkGammaTest)
 export(kablePdf)
 export(percForm)
