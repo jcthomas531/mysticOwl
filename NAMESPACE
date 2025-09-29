@@ -3,6 +3,7 @@
 export(binomScoreTest)
 export(easyColors)
 export(gkGammaTest)
+export(groupFreq)
 export(kablePdf)
 export(percForm)
 export(pressResids)
