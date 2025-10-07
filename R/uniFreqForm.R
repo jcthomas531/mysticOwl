@@ -15,7 +15,18 @@
 #'    If you have a list of uniFreqForm outputs and want to have them all output 
 #'    in an R markdown, make sure the chunk has results="asis" in the chunk header.
 #' @examples 
-#' #test
+#' #ouput examples
+#' #say you have a list of tables formatted with uniFreqForm called univars
+#' #all of the following work to output nice looking tables to a Rmd pdf
+#' 
+#' lapply(univars, function(x) {cat(x, sep = "\n")})
+#' 
+#' univars[1:length(univars)]
+#' 
+#' for (i in seq_along(univars)) {
+#'   cat(univars[[i]], sep = "\n")
+#' }
+#' 
 #' @import kableExtra
 #' @export
 uniFreqForm <- function(x, varName = NULL, extraText = NULL) {
