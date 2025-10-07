@@ -1,13 +1,19 @@
 #' uniFreqForm - Formatting Univariate Frequency Tables
 #' @param x an output of a frequency table from uniFreq() or unifreq2()
-#' @param varName the desired name of the variable as a string
+#' @param varName the desired name of the variable as a string, default is NULL
+#'  and defaults to name of the variable in the table. The supplied name or the
+#'   name in the table cannot contain an underscore (probably other special 
+#'   characters too).
 #' @param extraText extra text to add into the title
 #' @return a formatted univariate frequency table
 #' @details
-#'    function for formatting the frequency tables caclulated with uniFreq and uniFreq2 functions.
-#'    with uniFreq: pass into x the item from the list to be formatted, use double bracket subsetting. this is done for one single element of uniFreq output at a time
-#'    can also call names on the uniFreq object to know which number to use in bracket
-#'    for unifreq: to display all of the tables you want, use a for loop in r markdown but make sure that you have results='asis' in the header otherwise it prints a bunch of crap
+#'    Function for formatting the frequency tables caclulated with uniFreq 
+#'    and uniFreq2 functions. Formats to latex for outputting in R markdown pdf docs \n
+#'    This function operates on a single table at a time. That means if you have
+#'     used uniFreq and have a list of output tables, you need to loop/lapply 
+#'     through them and apply this formatting function to one table at a time. \n
+#'    If you have a list of uniFreqForm outputs and want to have them all output 
+#'    in an R markdown, make sure the chunk has results="asis" in the chunk header.
 #' @examples 
 #' #test
 #' @import kableExtra
@@ -17,7 +23,15 @@ uniFreqForm <- function(x, varName = NULL, extraText = NULL) {
   if (is.null(varName)) {
     varName <- colnames(x)[1]
   }
-  
+  #warning for special characters in variable name
+  if (grepl("_", varName)) {
+    
+    warning(paste0("WARNING: for variable ", varName, ". Cannot have _ in a 
+                   variable name. Rmarkdown will get mad. Probably other special
+                   characters off limits too. The underscore has been replaced by a space :)"))
+    varName <- gsub("_", " ", varName)
+  }
+  #formatting
   formed <- x |>
     kable(caption = paste("Frequencies for", varName, "variable,", extraText), 
           longtable = FALSE,
