@@ -6,9 +6,16 @@
 #' @return a formatted table
 #' \item{retTab}{a formatted table}
 #' @details
-#'    Basic table formatting for a markdown pdf document
+#'    Basic table formatting for a markdown pdf document. This gets things set up
+#'    in a standard way that I like, but can be further adjusted by piping in to 
+#'    further kableExtra functions. I havent full explored all of the options, but
+#'    you can at least do some things. See examples
 #' @examples 
-#' #test
+#' #piping custom table into further kableExtra functions for further customization
+#' head(iris) |>
+#'   kablePdf(title = "Iris Example") |>
+#'   #change column 3 justificiation to left
+#'   column_spec(3, latex_column_spec = "l")
 #' @import kableExtra
 #' @export
 kablePdf <- function(table, 
