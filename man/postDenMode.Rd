@@ -7,7 +7,7 @@
 postDenMode(pd)
 }
 \arguments{
-\item{x}{a vector of posterior draws}
+\item{pd}{a vector of posterior draws}
 }
 \value{
 the posterior density mode
