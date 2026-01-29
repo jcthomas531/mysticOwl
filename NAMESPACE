@@ -3,6 +3,7 @@
 S3method(summary,bss)
 export(bestSubsetSel)
 export(binomScoreTest)
+export(dateStamp)
 export(easyColors)
 export(gkGammaTest)
 export(groupFreq)
