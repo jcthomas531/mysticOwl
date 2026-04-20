@@ -4,21 +4,27 @@
 \alias{gkGammaTest}
 \title{gkGammaTest - Goodman Kruskal Gamma Test}
 \usage{
-gkGammaTest(x)
+gkGammaTest(x, ...)
 }
 \arguments{
-\item{x}{test}
+\item{x}{a contingency table}
+
+\item{...}{other arguements to be passed into vcdExtra::GKgamma() such as level. See documentation for vcdExtra::GKgamma() for more details.}
 }
 \value{
 A list containing values:
-\code{resultHolder} placeholder
+\code{vcdOutput} the output from the vcdExtra::GKgamma() function
+\code{zStat} the z statistic
+\code{pVal} the p-value
 }
 \description{
 gkGammaTest - Goodman Kruskal Gamma Test
 }
 \details{
-need to do the documentation for this one, see the actual code for commented instructions
+This function is simply an extension of the Goodman and Kruskal Gamma test function vcdExtra::GKgamma() that also outputs a p-value. For details on this method see categorical data analysis by agresti (v3), page 88. The standard error (or ASE) from the vcdExtra function was checked against SAS and is correct.
 }
 \examples{
-#test
+#simple proof of concept with mtcars data
+carsTab <- table(mtcars$carb, mtcars$vs)
+gkGammaTest(carsTab)
 }

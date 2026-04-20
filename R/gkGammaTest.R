@@ -1,34 +1,31 @@
 #' gkGammaTest - Goodman Kruskal Gamma Test
-#' @param x  test
-#' @return A list containing values:
-#' \code{resultHolder} placeholder
 #' @details
-#'    need to do the documentation for this one, see the actual code for commented instructions
+#' This function is simply an extension of the Goodman and Kruskal Gamma test function vcdExtra::GKgamma() that also outputs a p-value. For details on this method see categorical data analysis by agresti (v3), page 88. The standard error (or ASE) from the vcdExtra function was checked against SAS and is correct.
+#' @param x a contingency table
+#' @param ... other arguements to be passed into vcdExtra::GKgamma() such as level. See documentation for vcdExtra::GKgamma() for more details.
+#' @return A list containing values:
+#' \code{vcdOutput} the output from the vcdExtra::GKgamma() function
+#' \code{zStat} the z statistic
+#' \code{pVal} the p-value
 #' @examples 
-#' #test
+#' #simple proof of concept with mtcars data
+#' carsTab <- table(mtcars$carb, mtcars$vs)
+#' gkGammaTest(carsTab)
 #' @importFrom vcdExtra GKgamma
 #' @export
-gkGammaTest <- function (x) {
-  #x should be a data frame where the first column is the y variable 
-  #and the rest of the columns are the x variables
-  #see catagorical data analysis by agresti, page 88
-  #checked that this ASE is in fact the correct ASE by copying an exampled
-  #from SAS
-  tableHolder <- vector(mode = "list", length = ncol(x)-1)
-  testHolder <- vector(mode = "list", length = ncol(x)-1)
-  resultHolder <- vector(mode = "list", length = ncol(x)-1)
-  for (i in 1:(ncol(x)-1)) {
-    tableHolder[[i]] <- table(x[[i+1]], x[[1]])
-    gammaTest <- vcdExtra::GKgamma(tableHolder[[i]])
-    testHolder[[i]] <- list("gamma" = gammaTest$gamma,
-                            "ASE" = gammaTest$sigma,
-                            "Z" = gammaTest$gamma/gammaTest$sigma,
-                            "p-val" = pnorm(abs(gammaTest$gamma/gammaTest$sigma),
-                                            lower.tail = FALSE)*2
-    )
-    resultHolder[[i]] <- list("contingencyTable" = tableHolder[[i]],
-                              "gammaTest" = testHolder[[i]])
-    names(resultHolder)[i] <- colnames(x)[i+1]
-  }
-  return(resultHolder)
+gkGammaTest <- function (x, ...) {
+  #will take a contigency table, just like vcdExtra::GKgamma()
+  
+  #use the vcdExtra::GKgamma() function
+  vcdRes <- vcdExtra::GKgamma(x, ...)
+  
+  #use results of function to calculate p-value
+  zStat <- vcdRes$gamma/vcdRes$sigma
+  pVal <- pnorm(abs(zStat), lower.tail = FALSE)*2
+  
+  #results as a list
+  res <- list("vcdOutput" = vcdRes,
+              "zStat" = zStat,
+              "pVal" = pVal)
+  return(res)
 }
